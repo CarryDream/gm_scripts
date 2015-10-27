@@ -92,8 +92,12 @@ function changeBg(imageUrl,video){
 	bg.addEventListener("load",function(e){
 		var v = $('#bg3 video');
 		if(video){
-			v.attr('loop',video.loop).attr('src',bing_uri + video.codecs[0][1]);
-			$('#bg3,#bg3 video').fadeIn(time)
+			if(video.codecs == undefined) {
+		              console.log('获取 video.codecs 为空!');
+		        } else {
+				v.attr('loop',video.loop).attr('src',bing_uri + video.codecs[0][1]);
+				$('#bg3,#bg3 video').fadeIn(time)
+		        }
 		}else{
 			$('#bg3,#bg3 video').fadeOut(time,function(){v.attr('loop',"").attr('src','')});
 		}
